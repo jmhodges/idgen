@@ -4,7 +4,7 @@ import (
 	"errors"
 )
 
-var ErrFakeIdGenExpired = errors.New("fakeIdGen expired")
+var ErrFakeIdGenOutOfIds = errors.New("all ids given out by fake id generator")
 
 func NewFakeIdGen(ids []string) UUIDGenerator {
 	return &fakeIdGen{ids, 0}
@@ -17,7 +17,7 @@ type fakeIdGen struct {
 
 func (f *fakeIdGen) NewId() (Id, error) {
 	if f.x >= len(f.ids) {
-		return "", ErrFakeIdGenExpired
+		return "", ErrFakeIdGenOutOfIds
 	}
 	id := f.ids[f.x]
 	f.x += 1

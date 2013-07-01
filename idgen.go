@@ -8,6 +8,8 @@ import (
 
 const EmptyId = Id("")
 
+var privateIdGen = NewIdGen()
+
 type Id string
 
 type UUIDGenerator interface {
@@ -40,4 +42,12 @@ func (ig idGen) NewId() (Id, error) {
 	dashedId[23] = '-'
 	hex.Encode(dashedId[24:36], id[10:16])
 	return Id(string(dashedId)), nil
+}
+
+func NewId() Id {
+	id, err := privateIdGen.NewId()
+	if err != nil {
+		panic("/dev/urandom is broken, process is untrustworthy, uuid gen failed")
+	}
+	return id
 }
