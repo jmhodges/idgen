@@ -17,7 +17,7 @@ type UUIDGenerator interface {
 }
 
 func NewIdGen() UUIDGenerator {
-	return &idGen{}
+	return idGen{}
 }
 
 type idGen struct {}
