@@ -1,3 +1,6 @@
+// Copyright 2021 Jeffrey M Hodges.
+// SPDX-License-Identifier: Apache-2.0
+
 package idgen
 
 import (
@@ -20,7 +23,7 @@ func NewIdGen() UUIDGenerator {
 	return idGen{}
 }
 
-type idGen struct {}
+type idGen struct{}
 
 // Generate an id suitable for inserting into a postgres uuid column. This
 // means that it will not be simply 16 random bytes, but a hex-formatted
